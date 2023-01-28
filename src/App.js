@@ -70,7 +70,9 @@ function App() {
 						>
 							<MenuItem value="worldwide">Worldwide</MenuItem>
 							{countries.map((country) => (
-								<MenuItem value={country.value}>{country.name}</MenuItem>
+								<MenuItem key={country} value={country.value}>
+									{country.name}
+								</MenuItem>
 							))}
 						</Select>
 					</FormControl>
@@ -99,7 +101,7 @@ function App() {
 					<h3>Live cases by countries</h3>
 					<Table countries={tableData} />
 				</CardContent>
-				<LineGraph />
+				<LineGraph casesType={"cases"} />
 			</Card>
 		</div>
 	);
