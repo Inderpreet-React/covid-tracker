@@ -35,7 +35,7 @@ body {
 .table {
 	margin-top: 1rem;
 	overflow-y: scroll;
-	height: 80vh;
+	height: 60vh;
 }
 
 .table tr {
