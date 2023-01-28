@@ -22,29 +22,29 @@ const options = {
 			},
 		},
 	},
-	scales: {
-		xAxes: [
-			{
-				type: "time",
-				time: {
-					format: "MM/DD/YY",
-					tooltipFormat: "ll",
-				},
-			},
-		],
-		yAxes: [
-			{
-				gridLines: {
-					display: false,
-				},
-				ticks: {
-					callback: function (value, index, values) {
-						return numeral(value).format("0a");
-					},
-				},
-			},
-		],
-	},
+	// scales: {
+	// 	xAxes: [
+	// 		{
+	// 			type: "time",
+	// 			time: {
+	// 				format: "MM/DD/YY",
+	// 				tooltipFormat: "ll",
+	// 			},
+	// 		},
+	// 	],
+	// 	yAxes: [
+	// 		{
+	// 			gridLines: {
+	// 				display: false,
+	// 			},
+	// 			ticks: {
+	// 				callback: function (value, index, values) {
+	// 					return numeral(value).format("0a");
+	// 				},
+	// 			},
+	// 		},
+	// 	],
+	// },
 };
 
 const buildChartData = (data, casesType) => {
@@ -56,12 +56,10 @@ const buildChartData = (data, casesType) => {
 				x: date,
 				y: data[casesType][date] - lastDataPoint,
 			};
-			console.log("newData", newDataPoint);
 			chartData.push(newDataPoint);
 			lastDataPoint = data[casesType][date];
 		}
 	}
-	console.log(chartData, "chartData");
 	return chartData;
 };
 
@@ -75,10 +73,8 @@ export default function LineGraph({ casesType }) {
 					return response.json();
 				})
 				.then((data) => {
-					console.log(data);
 					let chartData = buildChartData(data, casesType);
 					setData(chartData);
-					console.log(chartData);
 				});
 		};
 
