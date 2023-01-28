@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Line } from "react-chartjs-2";
+import Chart from "chart.js/auto";
 import numeral from "numeral";
 
 const options = {
@@ -50,19 +51,21 @@ const buildChartData = (data, casesType) => {
 	let chartData = [];
 	let lastDataPoint;
 	for (let date in data.cases) {
-		if (lastDataPoint) {
+		if (date) {
 			let newDataPoint = {
 				x: date,
 				y: data[casesType][date] - lastDataPoint,
 			};
+			console.log("newData", newDataPoint);
 			chartData.push(newDataPoint);
 			lastDataPoint = data[casesType][date];
 		}
 	}
+	console.log(chartData, "chartData");
 	return chartData;
 };
 
-function LineGraph({ casesType }) {
+export default function LineGraph({ casesType }) {
 	const [data, setData] = useState({});
 
 	useEffect(() => {
@@ -72,6 +75,7 @@ function LineGraph({ casesType }) {
 					return response.json();
 				})
 				.then((data) => {
+					console.log(data);
 					let chartData = buildChartData(data, casesType);
 					setData(chartData);
 					console.log(chartData);
@@ -82,7 +86,7 @@ function LineGraph({ casesType }) {
 	}, [casesType]);
 
 	return (
-		<div>
+		<div className="lineGraph">
 			{data?.length > 0 && (
 				<Line
 					data={{
@@ -100,5 +104,3 @@ function LineGraph({ casesType }) {
 		</div>
 	);
 }
-
-export default LineGraph;
