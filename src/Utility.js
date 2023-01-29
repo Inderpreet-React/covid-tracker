@@ -66,3 +66,9 @@ export const showDataOnMap = (data, casesType = "cases") =>
 			</Popup>
 		</Circle>
 	));
+
+export const prettyPrint = (stat) =>
+	stat ? `+${numeral(stat).format("0.0a")}` : "+0";
+
+export const prettyPrintTotal = (stat) =>
+	stat ? `${numeral(stat).format("0.0a")}` : "+0";
