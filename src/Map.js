@@ -1,7 +1,7 @@
 import React from "react";
 import { MapContainer, TileLayer, useMap } from "react-leaflet";
 import "./Map.css";
-// import { showDataOnMap } from "./Utility";
+import { showDataOnMap } from "./Utility";
 
 function SetViewOnClick({ coords, zoom }) {
 	const map = useMap();
@@ -19,7 +19,7 @@ function Map({ countries, casesType, center, zoom, coords }) {
 					attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 				/>
 				<SetViewOnClick coords={[coords["lat"], coords["lng"]]} zoom={zoom} />
-				{/* {showDataOnMap(countries, casesType)} */}
+				{showDataOnMap(countries, casesType)}
 			</MapContainer>
 		</div>
 	);

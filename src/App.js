@@ -17,6 +17,7 @@ import "leaflet/dist/leaflet.css";
 function App() {
 	const [countries, setCountries] = useState(["USA", "UK", "INDIA"]);
 	const [country, setCountry] = useState("worldwide");
+	const [mapCountries, setMapCountries] = useState([]);
 	const [countryInfo, setCountryInfo] = useState({});
 	const [tableData, setTableData] = useState([]);
 	const [mapCenter, setMapCenter] = useState({ lat: 34.8074, lng: -40.479 });
@@ -40,6 +41,7 @@ function App() {
 						value: country.countryInfo.iso2,
 					}));
 					const sortedData = sortData(data);
+					setMapCountries(data);
 					setTableData(sortedData);
 					setCountries(countries);
 				});
@@ -102,7 +104,12 @@ function App() {
 						total={countryInfo.deaths}
 					/>
 				</div>
-				<Map center={mapCenter} zoom={mapZoom} coords={mapCenter} />
+				<Map
+					countries={mapCountries}
+					center={mapCenter}
+					zoom={mapZoom}
+					coords={mapCenter}
+				/>
 			</div>
 			<Card className="app__right">
 				<CardContent>
