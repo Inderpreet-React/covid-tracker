@@ -55,6 +55,7 @@ function App() {
 					<h1>Covid 19 Tracker</h1>
 					<FormControl className="app__dropdown">
 						<Select
+							className="select"
 							variant="outlined"
 							value={country}
 							onChange={async (e) => {

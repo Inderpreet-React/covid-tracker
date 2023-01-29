@@ -4,16 +4,20 @@
 
 body {
 	background-color: rgb(23 23 23);
+	overflow: hidden;
 }
 
 .app {
 	display: flex;
 	justify-content: space-evenly;
-	padding: 2rem;
+	padding: 0.5rem;
 }
 
 .app__left {
+	display: flex;
+	flex-direction: column;
 	flex: 0.9;
+	gap: 0.5rem;
 }
 
 .app__header {
